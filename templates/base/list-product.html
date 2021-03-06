@@ -1,0 +1,34 @@
+{% load django_template_maths %}
+<section class="product">
+    <div class="container">
+        <h4 class="bg-white title-section">Sản phẩm</h4>
+        {% include "base/filter.html" %}
+        <div class="row product-list">
+            {% for item in products %}
+                <div class="col-lg-2 col-md-3 col-sm-6 item-product">
+                    <a href="/detail/{{ item.slug_product }}">
+                        <div class="product-item">
+                        
+                            <img src="/media/{{ item.main_picture }}" class="product-img"
+                             alt="">
+                             <span class="product-price">{{ 100|sub:item.discount|mul:item.price|div:100|separator:'comma' }}đ</span>
+                             <span class="product-sold">Có sẵn: {{ item.num_available }}</span>
+                            {% if item.discount != 0 %}
+                            <div class="product_discount">
+                                <span class="discount_detail text-red">{{ item.discount }}%</span>
+                                <span class="discount_detail text-white">GIẢM</span>
+                            </div>
+                            {% endif %}
+                            <p class="product-title">
+                                {{ item.name_product }}
+                            </p>
+                            
+                        
+                        
+                         </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

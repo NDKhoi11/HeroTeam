@@ -1,0 +1,18 @@
+<!--portfolio-->
+<section class="portfolio">
+    <div class="container">
+        <h4 class="portfolio-title bg-white">Danh mục</h4>
+        <div class="row list-portfolio -white">
+            {% for item in category %}
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <a style="text-decoration: none; font-weight: 600; color: red;" class="d-inline-block w-100 link_product" href="/?category={{ item.slug_category }}">
+                        <div class="wrapper-img-type">
+                            <img class="img-categry position-absolute" src="/media/{{ item.image_category }}" alt="">
+                        </div>
+                        <p class="text-center title_product">{{ item.name_category }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
