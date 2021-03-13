@@ -1,14 +1,17 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% load django_template_maths %}
+
 {% block title %}
     Xem ai đã đặt hàng
 {% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static "css/profile.css" %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="{% static "css/my-order.css" %}">
 {% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row profile">
@@ -25,6 +28,7 @@
                     <div class="col-md-2">Trạng thái</div>
                 </div>
                 {% csrf_token %}
+
                 {% for item in orders %}
                     <div class="body-table row bg-white">
                         <div class="col-md-1">
@@ -61,10 +65,12 @@
                     <p>Thông tin bổ sung: {% firstof item.add_info "Trống" %}</p>
                     </div>
                 {% endfor %}
+
             </div>
         </div>
     </div>
 {% endblock %}
+
 {% block js %}
     <script src="{% static "js/handleSelling.js" %}"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>

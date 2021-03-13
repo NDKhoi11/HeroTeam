@@ -1,14 +1,17 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% load django_template_maths %}
+
 {% block title %}
     Giỏ hàng của tôi
 {% endblock %}
 {% block css %}
+
     <link rel="stylesheet" href="{% static "css/profile.css" %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="{% static "css/my-order.css" %}">
 {% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row profile">
@@ -25,6 +28,7 @@
                     <div class="col-md-2">Trạng thái</div>
                 </div>
                 {% csrf_token %}
+
                 {% for item in order %}
                     <div class="body-table row bg-white">
                         <div class="col-md-1">
@@ -66,6 +70,7 @@
                         </div>
                     </div>
                 {% endfor %}
+
                 <div class="btn-group float-right" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-success" id="handleOrder">Đặt hàng</button>
                     <button type="button" class="btn btn-danger" id="delete">Xóa sản phẩm</button>
@@ -75,6 +80,7 @@
         </div>
     </div>
 {% endblock %}
+
 {% block js %}
     <script src="{% static "js/handle-my-order.js" %}"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>

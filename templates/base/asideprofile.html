@@ -46,6 +46,7 @@
                     <i class="fas fa-shopping-cart"></i>
                     Giỏ hàng </a>
             </li>
+            
             {% if user.is_superuser %}
             <li>
                 <a href="/user/profile/shop/">
@@ -53,6 +54,7 @@
                     Gian hàng của tôi </a>
             </li>
             {% endif %}
+
         </ul>
     </div>
     <!-- END MENU -->

@@ -1,20 +1,24 @@
 {% extends "base/base.html" %}
 {% load static %}
+
 {% block title %}
     Đăng kí tài khoản
 {% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static "css/register.css" %}">
 
 {% endblock %}
+
 {% block body %}
     <section>
         <div class="container_">
             <form method="post" action="/user/register/" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table>
+
                     {% for field in form %}
                         {% if field.errors %}
                             {% for error in field.errors %}
@@ -24,6 +28,7 @@
                             {% endfor %}
                         {% endif %}
                     {% endfor %}
+                    
                     <tr>
                         <td>
                             Tên đăng nhập
