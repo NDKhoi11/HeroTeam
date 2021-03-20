@@ -1,9 +1,8 @@
 header{
-    background-color: #00b894;
-    background-color: linear-gradient(-180deg, #00b894, #55efc4);
+    background-color: rgb(1, 127, 255);/*linear-gradient(-180deg, #00b894, #55efc4);*/
     color: #FFF !important;
     padding-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
 }
 .header-top{
     height: 34px;
@@ -81,7 +80,7 @@ header{
     height: 34px;
     line-height: 34px;
     width: 60px;
-    background-color: #00b894;
+    background-color: rgb(13, 92, 182);
     color: #fff;
     border-radius: 2px;
     box-shadow: none;
@@ -170,4 +169,12 @@ header{
     border-radius: 25px;
     height: 25px;
     width: 25px;
+}
+.cart-wrapper{
+   color: rgb(255, 255, 255);
+   font-size: 14px;
+}
+.cart-icon{
+    padding-left: 20px;
+    padding-bottom: 20px;
 }
