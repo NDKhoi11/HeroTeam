@@ -7,11 +7,13 @@ class Home(View):
     def get(self, request):
         category = Category.objects.all()
         products = Products.objects.all()
+        isQuery = False
         
         # filter category
         if request.GET.get("category"):
             products = products.filter(category__slug_category=request.GET.get("category"))
-            
+            isQuery = True
+        
         # advance filter
         property = {
             "orderBy": request.GET.get("order-by"),
@@ -40,7 +42,9 @@ class Home(View):
             "category": category,
             "products": products,
             "filter": property,
+            "isQuery": isQuery,
         }
+
         return render(request, "home.html", context)
 
 

@@ -16,8 +16,10 @@
 {% endblock %}
 
 {% block body %}
-    {% include "base/slide.html" %}
-    {% include "base/category.html" %}
+    {% if not isQuery %}
+        {% include "base/slide.html" %}
+        {% include "base/category.html" %}
+    {% endif %}
     {% include "base/list-product.html" %}
 {% endblock %}
 
