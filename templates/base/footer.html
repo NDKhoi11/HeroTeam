@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "css/footer.css" %}">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="./assets/fonts/fontawesome-free-5.12.1-web/css/all.min.css"
+    />
+    <script src="https://kit.fontawesome.com/038c384707.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <footer class="footer">
+      <div class="grid wide footer__content">
+        <div class="row">
+          <div class="col l-2-4 m-4 c-6">
+            <h3 class="footer__heading">CHĂM SÓC KHÁCH HÀNG</h3>
+            <ul class="footer-list">
+              <li class="footer-item">
+                <a href="#" class="footer-item__link">Trung Tâm Trợ Giúp</a>
+              </li>
+              <li class="footer-item">
+                <a href="#" class="footer-item__link">Hướng Dẫn Mua Hàng</a>
+              </li>
+              <li class="footer-item">
+                <a href="#" class="footer-item__link">Chính Sách Vận Chuyển</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col l-2-4 m-4 c-6">
+            <h3 class="footer__heading">VỀ CHÚNG TÔI</h3>
+            <ul class="footer-list">
+              <li class="footer-item">
+                <a href="#" class="footer-item__link">Giới Thiệu Về Shop</a>
+              </li>
+              <li class="footer-item">
+                <a href="#" class="footer-item__link">Điều Khoản Shop</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col l-2-4 m-4 c-6">
+            <h3 class="footer__heading">THEO DÕI CHÚNG TÔI TRÊN</h3>
+            <ul class="footer-list">
+              <li class="footer-item">
+                <a href="#" class="footer-item__link">
+                  <i class="footer-item__icon fab fa-facebook-square"></i>
+                  Facebook</a
+                >
+              </li>
+              <li class="footer-item">
+                <a href="#" class="footer-item__link">
+                  <i class="footer-item__icon fab fa-github"></i>
+                  Github</a
+                >
+              </li>
+              <li class="footer-item">
+                <a href="#" class="footer-item__link">
+                  <i class="footer-item__icon fab fa-slack"></i>
+                  Slack</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col l-2-4 m-8 c-12">
+            <h3 class="footer__heading" style="padding-top: 10px">
+              VÀO CỬA HÀNG TRÊN ỨNG DỤNG
+            </h3>
+            <div class="footer__download">
+              <img
+                src="{% static 'img/qr_code.png' %}"
+                alt="Download QR"
+                class="footer__dowload-qr"
+              />
+              <div class="footer__download-apps">
+                <a href="#" class="footer__download-app-link">
+                  <img
+                    src="{% static 'img/google_play.png' %}"
+                    alt="Google Play"
+                    class="footer__download-app-img"
+                  />
+                </a>
+                <a href="#" class="footer__download-app-link">
+                  <img
+                    src="{% static 'img/appstore.png' %}"
+                    alt="App store"
+                    class="footer__download-app-img"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="grid wide">
+          <p class="footer__text">
+            © Copyrights 2021. Development By Hero Team
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
