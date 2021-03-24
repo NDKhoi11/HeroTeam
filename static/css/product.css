@@ -1,5 +1,6 @@
 .product{
     margin-top: 10px;
+    min-height: 600px;
 }
 .product > .container_ > h4{
     padding: 10px;
