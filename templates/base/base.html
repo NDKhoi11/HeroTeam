@@ -84,9 +84,9 @@
               </ul>
             </div>
           </div>
+          {%if user.is_authenticate%}
           <div class="cart">
             <a href="/order/my-order">
-              <!-- <span><i class="fas fa-shopping-cart"></i></span> -->
               <div class="cart-wrapper">
                 <img
                   class="cart-icon"
@@ -97,6 +97,7 @@
               </div>
             </a>
           </div>
+          {%endif%}
         </div>
       </div>
     </header>
