@@ -25,13 +25,19 @@ class Home(View):
                 products = products.order_by("price")
             if property["orderBy"] == "price-down":
                 products = products.order_by("-price")
+            if property["orderBy"] == "time":
+                products = products.order_by("-created_at")
+        else:
+            products = products.order_by("-created_at")
                 
         if property["available"]:
+            if property["available"] == "all":
+                products = products.filter(price__lte=1000000)
             if property["available"] == "yes":
-                products = products.filter(num_available__gt=0)
+                products = products.filter(price__gt=1000000, price__lte=5000000)
             if property["available"] == "no":
-                products = products.filter(num_available=0)
-                
+                products = products.filter(price__gt=5000000)
+
         if property["promotion"]:
             if property["promotion"] == "yes":
                 products = products.filter(discount__gt=0)
