@@ -6,6 +6,7 @@ import json
 from products.models import Products
 from user.models import MyUser
 from order.models import Order
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -32,6 +33,23 @@ class NewOrder(LoginRequiredMixin, View):
         order = Order.objects.create(user=request.user, product=product, number=number)
         order.save()
         return HttpResponse(json.dumps({"result": "OK"}), content_type="application/json")
+
+class ThongKe(LoginRequiredMixin, View):
+    login_url = "/user/login"
+    def get(self, request):
+        orders = Order.objects.filter(product__created_by=request.user).exclude(mode=0)
+        return render(request, "dashboard/dashboard_with_pivot.html", {"orders": orders})
+        #return render(request, "dashboard/try.html", {"orders": orders})
+
+def viewOrder(request):
+    if request.method == 'GET':
+        product_list = Order.objects.all()
+        products=[]
+        for prod in product_list:
+            products.append({"fields":{"name":prod.product.name_product,"so_luong": prod.number}}) 
+        #print(products)      
+        convert = json.dumps(products)
+        return JsonResponse(convert, safe=False)
 
 
 class ShowMyOrder(LoginRequiredMixin, View):
