@@ -218,6 +218,6 @@ class MyShop(LoginRequiredMixin, View):
         products = Products.objects.filter(created_by=request.user)
         return render(request, "my-shop/my-shop-home.html", {"products": products})
 
-
+# test
 
 
