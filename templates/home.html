@@ -30,12 +30,12 @@
     <script type="text/javascript" src="{% static "js/slide.js" %}"></script>
     <script>
         $(".filter__select").change(() => {
-            let query = "";s
+            let query = "";
             if (window.location.href.indexOf("?") == -1) query += "?"
             query += "&order-by=" + $("#order-by").children("option:selected").val()
             query += "&available=" + $("#available").children("option:selected").val()
             query += "&promotion=" + $("#promotion").children("option:selected").val()
-            window.location.href += query
+            window.location.search = query
         })
         {% if filter.orderBy %}
             $("#order-by").val("{{ filter.orderBy }}")
