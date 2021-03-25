@@ -30,7 +30,7 @@
     <script type="text/javascript" src="{% static "js/slide.js" %}"></script>
     <script>
         $(".filter__select").change(() => {
-            let query = "";s
+            let query = "";
             if (window.location.href.indexOf("?") == -1) query += "?"
             query += "&order-by=" + $("#order-by").children("option:selected").val()
             query += "&available=" + $("#available").children("option:selected").val()
