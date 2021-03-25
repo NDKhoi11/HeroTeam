@@ -219,5 +219,5 @@ class MyShop(LoginRequiredMixin, View):
         return render(request, "my-shop/my-shop-home.html", {"products": products})
 
 # test
-
+# tesst
 
