@@ -29,14 +29,47 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{% static "js/slide.js" %}"></script>
     <script>
-        $(".filter__select").change(() => {
-            let query = "";
-            if (window.location.href.indexOf("?") == -1) query += "?"
-            query += "&order-by=" + $("#order-by").children("option:selected").val()
-            query += "&available=" + $("#available").children("option:selected").val()
-            query += "&promotion=" + $("#promotion").children("option:selected").val()
-            window.location.search = query
+        var category_req  = "{{ category_ajax.category_req }}" 
+        $(document).ready(function(){
+            let filter_Obj = {}
+            filter_Obj["order-by"] = ""
+            filter_Obj["promotion"] = ""
+            filter_Obj["available"] = ""
+            filter_Obj["category_req"] = category_req
+            $("#order-by").change(() => {
+                let data = $("#order-by").children("option:selected").val();
+                filter_Obj["order-by"] = data
+            // let query = "";
+            // if (window.location.href.indexOf("?") == -1) query += "?"
+            // query += "&order-by=" + $("#order-by").children("option:selected").val()
+            // query += "&available=" + $("#available").children("option:selected").val()
+            // query += "&promotion=" + $("#promotion").children("option:selected").val()
+            // window.location.search = query        
         })
+
+            $("#promotion").change(() => {
+                let data = $("#promotion").children("option:selected").val();
+                filter_Obj["promotion"] = data    
+        })
+            $("#available").change(() => {
+                let data = $("#available").children("option:selected").val();
+                filter_Obj["available"] = data    
+        })
+
+        $(".filter__select").change(function(){
+            //run ajax
+            $.ajax({
+            url:'/filter-data',
+            data:filter_Obj,
+            dataType:'json',
+            success:function(res){
+                $(".product-list").html(res.data)
+                console.log(res)
+            }
+        })
+        })
+        })
+        
         {% if filter.orderBy %}
             $("#order-by").val("{{ filter.orderBy }}")
         {% endif %}
