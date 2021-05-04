@@ -13,6 +13,6 @@ urlpatterns = [
     path('selling/', views.ShowMySelling.as_view(), name="ShowMySelling"),
     path('accept/', views.AcceptOrder.as_view(), name="AcceptOrder"),
     path('received/', views.MarkReceived.as_view(), name="MarkReceived"),
-    path('thong-ke/', views.ThongKe.as_view(), name="ThongKe")
+    path('dashboard/', views.Dashboard.as_view(), name="dashboard")
     
 ]
