@@ -27,7 +27,7 @@ class NewOrder(LoginRequiredMixin, View):
         if int(number) > product.num_available or int(number) <= 0:
             context = {
             "result": "Not OK",
-            "message": "Dử liệu không hợp lệ!"
+            "message": "Dữ liệu không hợp lệ!"
             }
             return HttpResponse(json.dumps(context), content_type="application/json")
         order = Order.objects.create(user=request.user, product=product, number=number)
@@ -37,8 +37,8 @@ class NewOrder(LoginRequiredMixin, View):
 class Dashboard(LoginRequiredMixin, View):
     login_url = "/user/login"
     def get(self, request):
-        orders = Order.objects.filter(product__created_by=request.user).exclude(mode=0)
-        return render(request, "dashboard/dashboard_with_pivot.html", {"orders": orders})
+        products = Products.objects.all()
+        return render(request, "dashboard/dashboard_with_pivot.html", {"products": products})
         #return render(request, "dashboard/try.html", {"orders": orders})
 
 def viewOrder(request):
