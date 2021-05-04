@@ -34,7 +34,7 @@ class NewOrder(LoginRequiredMixin, View):
         order.save()
         return HttpResponse(json.dumps({"result": "OK"}), content_type="application/json")
 
-class ThongKe(LoginRequiredMixin, View):
+class Dashboard(LoginRequiredMixin, View):
     login_url = "/user/login"
     def get(self, request):
         orders = Order.objects.filter(product__created_by=request.user).exclude(mode=0)
