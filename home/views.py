@@ -7,98 +7,11 @@ from django.template.loader import render_to_string
 class Home(View):
     def get(self, request):
         category = Category.objects.all()
-        products = Products.objects.all()
-        isQuery = False
-
-        #sent to home to use ajax to request filter-data process
-        category_ajax = {
-            "category_req": request.GET.get("category")
-        }
-        
-        # filter category
-        if request.GET.get("category"):
-            products = products.filter(category__slug_category=request.GET.get("category"))
-            isQuery = True
-        
-        # advance filter
-        property = {
-            "orderBy": request.GET.get("order-by"),
-            "promotion": request.GET.get("promotion"),
-            "available": request.GET.get("available"),
-        }
-        if property["orderBy"]:
-            if property["orderBy"] == "price-up":
-                products = products.order_by("price")
-            if property["orderBy"] == "price-down":
-                products = products.order_by("-price")
-            if property["orderBy"] == "time":
-                products = products.order_by("-created_at")
-        else:
-            products = products.order_by("-created_at")
-                
-        if property["available"]:
-            if property["available"] == "all":
-                products = products.filter(price__lte=1000000)
-            if property["available"] == "yes":
-                products = products.filter(price__gt=1000000, price__lte=5000000)
-            if property["available"] == "no":
-                products = products.filter(price__gt=5000000)
-
-        if property["promotion"]:
-            if property["promotion"] == "yes":
-                products = products.filter(discount__gt=0)
-            if property["promotion"] == "no":
-                products = products.filter(discount=0)
-                
         context = {
             "category": category,
-            "products": products,
-            "filter": property,
-            "isQuery": isQuery,
-            "category_ajax": category_ajax,
         }
 
         return render(request, "home.html", context)
-
-
-class Search(View):
-    def get(self, request):
-        category = Category.objects.all()
-        products = Products.objects.all()
-        products = products.filter(name_product__icontains=request.GET.get("q", ""))
-        
-        # advance filter
-        property = {
-            "orderBy": request.GET.get("order-by"),
-            "promotion": request.GET.get("promotion"),
-            "available": request.GET.get("available"),
-        }
-        
-        if property["orderBy"]:
-            if property["orderBy"] == "price-up":
-                products = products.order_by("price")
-            if property["orderBy"] == "price-down":
-                products = products.order_by("-price")
-                
-        if property["available"]:
-            if property["available"] == "yes":
-                products = products.filter(num_available__gt=0)
-            if property["available"] == "no":
-                products = products.filter(num_available=0)
-                
-        if property["promotion"]:
-            if property["promotion"] == "yes":
-                products = products.filter(discount__gt=0)
-            if property["promotion"] == "no":
-                products = products.filter(discount=0)
-        context = {
-            "category": category,
-            "products": products,
-            "filter": property,
-        }
-        
-        return render(request, "home.html", context)
-
 
 class DetailProduct(View):
     def get(self, request, slug):
@@ -113,12 +26,14 @@ def filter_data(request):
     promotions=request.GET.get('promotion')
     availables=request.GET.get('available')
     category_req = request.GET.get('category_req')
-    category = Category.objects.all()
+    search_req = request.GET.get('search_req')
     products = Products.objects.all()
 
-    if category_req != 'None':
+    #check exits of request
+    if category_req != 'None' and category_req:
         products = products.filter(category__slug_category=category_req)
-
+    if search_req != 'None' and search_req:
+        products = products.filter(name_product__icontains=search_req)
 
     property = {
         "orderBy": orderby,
@@ -133,22 +48,24 @@ def filter_data(request):
             products = products.order_by("-price")
         if property["orderBy"] == "time":
             products = products.order_by("-created_at")
-    else:
-        products = products.order_by("-created_at")
-                
+            
     if property["available"]:
-        if property["available"] == "all":
+        if property["available"] == "down1m":
             products = products.filter(price__lte=1000000)
-        if property["available"] == "yes":
+        if property["available"] == "from1mto5m":
             products = products.filter(price__gt=1000000, price__lte=5000000)
-        if property["available"] == "no":
+        if property["available"] == "up5m":
             products = products.filter(price__gt=5000000)
+        if property["available"] == "all":
+            products = products
 
     if property["promotion"]:
         if property["promotion"] == "yes":
             products = products.filter(discount__gt=0)
         if property["promotion"] == "no":
             products = products.filter(discount=0)
+        if property["promotion"] == "all":
+            products = products
 
-    t = render_to_string('ajax/product-list.html',{'data':products})
+    t = render_to_string('ajax/product-list.html',{'products':products})
     return JsonResponse({'data':t})
