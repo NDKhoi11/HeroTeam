@@ -56,10 +56,10 @@
           </a>
           <div class="search">
             <div class="search-input">
-              <form class="position-relative" action="/search">
+              <form class="position-relative" action="/">
                 <input
                   class="key-search"
-                  name="q"
+                  name="search"
                   type="text"
                   placeholder="Tìm kiếm nội thất cho bạn ở đây"
                 />
@@ -70,15 +70,15 @@
             </div>
             <div class="tag">
               <ul>
-                <li><a href="/?category=ban">Bàn</a></li>
-                <li><a href="/?category=ghe">Ghế</a></li>
-                <li><a href="/?category=tu-quan-ao">Tủ</a></li>
-                <li><a href="/?category=sofa">Sofa</a></li>
-                <li><a href="/?category=guong">Gương</a></li>
-                <li><a href="/?category=en-trang-tri">Đèn</a></li>
-                <li><a href="/?category=giuong">Giường</a></li>
-                <li><a href="/?category=tranh">Tranh</a></li>
-                <li><a href="/?category=rem">Rèm</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('ban')">Bàn</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('ghe')">Ghế</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('tu-quan-ao')">Tủ</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('sofa')">Sofa</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('guong')">Gương</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('en-trang-tri')">Đèn</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('giuong')">Giường</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('tranh-treo-truong')">Tranh</a></li>
+                <li><a class="category__select" href="javascript:void(0)" onclick="changeURL('rem')">Rèm</a></li>
               </ul>
             </div>
           </div>
@@ -211,6 +211,26 @@
       src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.14.1/js/jquery.min.js"
     ></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="static/js/updateProducts.js"></script>
+    <script>
+      function changeURL(category) {
+        try {
+          // change URL and loadAjax if user in home screen
+          window.history.pushState(null, "", "/?category=" + category)
+          loadAjax();
+        } catch {
+          // go to home screen if use in another screen
+          window.location.href = '/?category=' + category
+        }
+      }
+    </script>
+    <script>
+      // set value for input search
+      $(document).ready(function () {
+          const search = a = new URLSearchParams(window.location.search)
+          $('.key-search').val(a.get('search') || '')
+        })
+    </script>
     {% block js %} {% endblock %}
   </body>
 </html>
