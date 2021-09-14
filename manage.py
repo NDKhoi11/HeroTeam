@@ -18,6 +18,6 @@ def main():
         
     execute_from_command_line(sys.argv)
 
-#mainnnnnnnnm
+#main
 if __name__ == '__main__':
     main()
